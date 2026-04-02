@@ -1,0 +1,31 @@
+body{
+    margin: 0;
+    color: lightgray;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 17px;
+    align-items: center;
+    background-color: rgb(33, 72, 94);
+}
+.oras{
+    margin:right 5px ;
+    padding: auto;
+}
+.oras button{
+    cursor: pointer;
+}
+.weather-card{
+    text-align: center;
+    background-color: cadetblue;
+    width: 400px;
+    margin: 120px auto;
+    border-radius: 25px;
+}
+#icon{
+    width: 100%;
+}
+#temperatura{
+    font size: 45px;
+}
