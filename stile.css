@@ -96,7 +96,7 @@ body {
 /* Details Section */
 .details {
   display: flex;
-  justify-content: center;
+  justify-content:center;
   gap: 40px;
   margin-top: 20px;
 }
@@ -122,6 +122,7 @@ body {
   gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 50px;
+  margin-top: 50px;
 }
 
 .day-card {
