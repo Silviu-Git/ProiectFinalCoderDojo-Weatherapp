@@ -1,9 +1,7 @@
 body{
     margin: 0;
     color: lightgray;
-    background-color: rgb(127, 149, 167);
 }
-
 .navbar{
     display: flex;
     justify-content: space-between;
@@ -29,25 +27,5 @@ body{
     width: 100%;
 }
 #temperatura{
-    font-size: 45px;
-}
-.day-card {
-  width: 120px;
-  padding: 20px;
-  border-radius: 20px;
-  text-align: center;
-  background-color: rgb(107, 135, 77);
-}
-#Prognoza{
-  color: black;
-}
-.forecast {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-}
-
-
-.day-card img {
-  width: 50px;
+    font size: 45px;
 }

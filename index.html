@@ -7,69 +7,33 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="stile.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-      <nav class="navbar">
-  <h2>Weather</h2>
-  <div class="oras">
-    <input type="text" id="cityInput" placeholder="Cauta oras...">
-    <button id="searchBtn">Cauta</button>
-    <button id="locationBtn">Locatia ta</button>
-  </div>
-</nav>
-
-<div class="weather-card">
-  <h1 id="cityName">--</h1>
-  <img id="icon" src="" alt="weather icon">
-  <h2 id="temp">--°C</h2>
-  <p id="desc">--</p>
-
-  <div class="details">
-    <div class="detail-box">
-      <p>💧</p>
-      <span id="humidity">--</span>
-    </div>
-
-    <div class="detail-box">
-      <p>💨</p>
-      <span id="wind">--</span>
+       <nav class="navbar">
+        <h2>Weather</h2>
+        <div class="oras">
+            <input type="text" id="cityInput" placeholder="Cauta oras...">
+            <button id="locatie">Locatia ta</button>
+            <button id="cautare">Cauta</button>
+        </div>
+       </nav>
+      <div class="weather-card">
+        <h1 id="nume-oras">_ _ </h1>
+         <img id="icon" src="" alt="weather icon">
+         <h1 id="temperatura">_ _ °C</h1>
+           <p id="decriecre">_ _ _</p>
+        <div class="details">
+      <div class="detail-box"></div>
+        <p>💧</p>
+        <span id="humidity">--</span>
+      </div>
+      <div class="detail-box">
+        <p>💨</p>
+        <span id="wind">--</span>
+      </div>
     </div>
   </div>
-</div>
-
-<h1 id="Prognoza">Prognoza pe 5 zile</h1>
-
-<div class="forecast">
-
-  <div class="day-card">
-    <p>Lun</p>
-    <img src="https://openweathermap.org/img/wn/01d.png">
-    <p>22°C</p>
-  </div>
-
-  <div class="day-card">
-    <p>Mar</p>
-    <img src="https://openweathermap.org/img/wn/02d.png">
-    <p>20°C</p>
-  </div>
-
-  <div class="day-card">
-    <p>Mie</p>
-    <img src="https://openweathermap.org/img/wn/03d.png">
-    <p>18°C</p>
-  </div>
-
-  <div class="day-card">
-    <p>Joi</p>
-    <img src="https://openweathermap.org/img/wn/04d.png">
-    <p>19°C</p>
-  </div>
-
-  <div class="day-card">
-    <p>Vin</p>
-    <img src="https://openweathermap.org/img/wn/10d.png">
-    <p>17°C</p>
-  </div>
-<div id="forecast"></div>S
-</div>
+        <script src="" async defer></script>
+    </body>
+</html>
