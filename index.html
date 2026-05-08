@@ -1,74 +1,58 @@
 <!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Weather App</title>
+    <meta name="description" content="Aplicatie meteo">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="stile.css">
-    </head>
-    <body>
-       <nav class="navbar">
+    <!-- Navbar -->
+    <nav class="navbar">
         <h2>Weather</h2>
         <div class="oras">
             <input type="text" id="cityInput" placeholder="Cauta oras...">
             <button id="locatie">Locatia ta</button>
             <button id="cautare">Cauta</button>
         </div>
-       </nav>
-      <div class="weather-card">
-        <h1 id="nume-oras">_ _ </h1>
-         <img id="icon" src="" alt="weather icon">
-         <h1 id="temperatura">_ _ °C</h1>
-           <p id="decriecre">_ _ _</p>
+    </nav>
+
+    <!-- Weather Card -->
+    <div class="weather-card">
+        <h1 id="nume-oras">_ _</h1>
+
+        <img id="icon" src="" alt="weather icon">
+
+        <h1 id="temperatura">_ _ °C</h1>
+
+        <p id="descriere">_ _ _</p>
+
         <div class="details">
-      <div class="detail-box"></div>
-        <p>💧</p>
+
+    <div class="detail-box">
+        💧
         <span id="humidity">--</span>
-      </div>
-      <div class="detail-box">
-        <p>💨</p>
-        <span id="wind">--</span>
-      </div>
     </div>
-  </div>
-  <h1>Prognoza pe 5 zile</h1>
 
-<div class="forecast">
-
-  <div class="day-card">
-    <p>Lun</p>
-    <img src="https://openweathermap.org/img/wn/01d.png">
-    <p>22°C</p>
-  </div>
-
-  <div class="day-card">
-    <p>Mar</p>
-    <img src="https://openweathermap.org/img/wn/02d.png">
-    <p>20°C</p>
-  </div>
-
-  <div class="day-card">
-    <p>Mie</p>
-    <img src="https://openweathermap.org/img/wn/03d.png">
-    <p>18°C</p>
-  </div>
-
-  <div class="day-card">
-    <p>Joi</p>
-    <img src="https://openweathermap.org/img/wn/04d.png">
-    <p>19°C</p>
-  </div>
-
-  <div class="day-card">
-    <p>Vin</p>
-    <img src="https://openweathermap.org/img/wn/10d.png">
-    <p>17°C</p>
-  </div>
+    <div class="detail-box">
+        💨
+        <span id="wind">--</span>
+    </div>
 
 </div>
-        <script src="" async defer></script>
-    </body>
+    </div>
+
+    <!-- Forecast -->
+    <h1 id="Prognoza">Prognoza pe 5 zile</h1>
+ 
+    <div class="forecast-container">
+    <div class="forecast" id="forecast"></div>
+    
+  <!-- Script -->
+    <script src="script.js"></script>
+
+</body>
 </html>
