@@ -1,4 +1,4 @@
-// -------------------- ELEMENTE --------------------
+
 const cityInput = document.getElementById("cityInput");
 const btnSearch = document.getElementById("cautare");
 const btnLocation = document.getElementById("locatie");
@@ -11,16 +11,19 @@ const humidity = document.getElementById("humidity");
 const wind = document.getElementById("wind");
 
 const forecastContainer = document.getElementById("forecast");
-
+const forecast = document.getElementById("forecast");
+const btnLeft = document.getElementById("btnLeft");
+const btnRight = document.getElementById("btnRight");
 
 const apiKey = "25e13912b9fe102b3419901915d1f38f";
 
-// -------------------- VARIABILE FORECAST --------------------
+let map;
+let precipitationLayer;
+
 let forecastData = [];
 let startIndex = 0;
 const visibleDays = 5;
 
-// -------------------- SEARCH --------------------
 btnSearch.addEventListener("click", () => {
   const city = cityInput.value.trim();
 
@@ -62,7 +65,7 @@ async function getWeatherByCity(city) {
   const data = await res.json();
 
   updateUI(data);
-
+ initMap(data.coord.lat, data.coord.lon);
   getForecast(data.coord.lat, data.coord.lon);
 }
 
@@ -74,6 +77,7 @@ async function getWeatherByCoords(lat, lon) {
   const data = await res.json();
 
   updateUI(data);
+  initMap(lat, lon);
 }
 
 // -------------------- UPDATE UI --------------------
@@ -82,7 +86,7 @@ function updateUI(data) {
   temp.textContent = Math.round(data.main.temp) + "°C";
   desc.textContent = data.weather[0].description;
   humidity.textContent = data.main.humidity + "%";
-  wind.textContent = data.wind.speed + " km/h";
+ wind.textContent = Math.round(data.wind.speed * 3.6) + " km/h";
 
   const iconCode = data.weather[0].icon;
   icon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
@@ -99,14 +103,14 @@ async function getForecast(lat, lon) {
   renderForecast(data.daily);
 }
 function getWeatherIcon(code) {
-  if (code === 0) return "☀️";        // senin
-  if (code <= 3) return "⛅";        // partial
-  if (code <= 48) return "🌫️";      // ceață
-  if (code <= 67) return "🌧️";      // ploaie
-  if (code <= 77) return "❄️";      // ninsoare
-  if (code <= 82) return "🌦️";      // averse
-  if (code <= 86) return "🌨️";      // ninsoare
-  return "🌩️";                      // furtună
+  if (code === 0) return "☀️";       
+  if (code <= 3) return "⛅";        
+  if (code <= 48) return "🌫️";      
+  if (code <= 67) return "🌧️";      
+  if (code <= 77) return "❄️";     
+  if (code <= 82) return "🌦️";      
+  if (code <= 86) return "🌨️";      
+  return "🌩️";                      
 }
 
 
@@ -130,20 +134,20 @@ function getWeatherIcon(code) {
     `;
 
     forecastContainer.appendChild(card);
-  }
 }
+ }
 function convertCode(code) {
-  if (code === 0) return "01d";        // soare
-  if (code <= 3) return "02d";         // partial
-  if (code <= 48) return "03d";        // nori
-  if (code <= 67) return "10d";        // ploaie
-  if (code <= 77) return "13d";        // ninsoare
-  if (code <= 82) return "09d";        // averse
-  return "11d";                        // furtuna
+  if (code === 0) return "01d";       
+  if (code <= 3) return "02d";        
+  if (code <= 48) return "03d";       
+  if (code <= 67) return "10d";       
+  if (code <= 77) return "13d";       
+  if (code <= 82) return "09d";       
+  return "11d";                      
 }
 
 
-// -------------------- DESENEAZĂ CARDURI --------------------
+// -------------------- CARDURI --------------------
 function drawForecast() {
   forecastContainer.innerHTML = "";
 
@@ -152,7 +156,7 @@ function drawForecast() {
   visible.forEach((day, index) => {
     const date = new Date(day.dt * 1000);
 
-    const card = document.createElement("div");
+    const card = document.createElement("div"); 
     card.className = "day-card";
 
     card.style.animationDelay = `${index * 80}ms`;
@@ -194,3 +198,57 @@ window.addEventListener("load", () => {
     getWeatherByCity(savedCity);
   }
 });
+
+
+
+function getStep() {
+  const card = forecast.querySelector(".day-card");
+  if (!card) return 120; // fallback
+  return card.offsetWidth + 15; // width + gap
+}
+
+btnLeft.addEventListener("click", () => {
+  forecast.scrollBy({
+    left: -getStep(),
+    behavior: "smooth"
+  });
+});
+
+btnRight.addEventListener("click", () => {
+  forecast.scrollBy({
+    left: getStep(),
+    behavior: "smooth"
+  });
+});
+
+
+
+
+function initMap(lat, lon) {
+
+  if (map) {
+    map.setView([lat, lon], 7);
+    return;
+  }
+
+  // DARK MAP
+  map = L.map("weather-map").setView([45.9432, 24.9668], 7);
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+    {
+      attribution: "&copy; OpenStreetMap contributors"
+    }
+  ).addTo(map);
+
+  // PRECIPITATII
+  precipitationLayer = L.tileLayer(
+    `https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${apiKey}`,
+    {
+      attribution: "&copy; OpenWeatherMap",
+      opacity: 0.9
+    }
+  );
+
+  precipitationLayer.addTo(map);
+}
